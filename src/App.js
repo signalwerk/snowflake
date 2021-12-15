@@ -1,9 +1,7 @@
-import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { snowflake } from "./snowflake";
 import { showConstruction } from "./showConstruction";
 
-const delay = 4; // keep in sync with css
 const constructionIsRendered = false;
 
 // this renders out of the object the svg elements
@@ -42,14 +40,6 @@ function App() {
 
   console.log(`congrats you watched ${counter} snowflakes`);
 
-  useEffect(() => {
-    let timer = setInterval(() => setCounter((v) => v + 1), delay * 1000);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
   return (
     <div className="app">
       {constructionIsRendered && showConstruction()}
@@ -57,7 +47,10 @@ function App() {
       <div className="snowflake__group">
         <div className="snowflake__snowflake-items">
           <div className="snowflake__containter">
-            <div className="blink">
+            <div
+              className={counter % 2 ? "blinkA" : "blinkB"}
+              onAnimationEnd={() => setCounter((v) => v + 1)}
+            >
               <svg
                 className="snowflake"
                 xmlns="http://www.w3.org/2000/svg"

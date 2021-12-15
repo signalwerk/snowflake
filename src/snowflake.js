@@ -13,6 +13,8 @@ export function snowflake() {
     ]),
   ];
 }
+
+// helper to show the center
 export function grid() {
   return [
     {
@@ -31,13 +33,30 @@ export function grid() {
     },
   ];
 }
-<polygon points="0,100 50,25 50,75 100,0" />;
+
+// will return one item randomly from the array
+function sample(array) {
+  return array[Math.floor(rand() * array.length)];
+}
+
+function random(min, max) {
+  return Math.floor(rand() * (max - min)) + min;
+}
+
+// in case we need an other random function
+function rand() {
+  return Math.random();
+}
+
+// get a new point based on angel and distance
 function pointAngleDistance([x, y], angle, distance) {
   return [
     Math.cos((angle * Math.PI) / 180) * distance + x,
     Math.sin((angle * Math.PI) / 180) * distance + y,
   ];
 }
+
+// move to center
 export function center(children) {
   return {
     type: "group",
@@ -46,13 +65,8 @@ export function center(children) {
     children,
   };
 }
-function random(min, max) {
-  // return min;
-  return Math.floor(rand() * (max - min)) + min;
-}
-function rand() {
-  return Math.random();
-}
+
+// thin lines
 export function hair(style) {
   function generate() {
     function fan({ angel, count, distance, length = 90, start = 0 }) {
@@ -85,8 +99,6 @@ export function hair(style) {
         const length = 90 - spread;
         const start = 0 - spread;
 
-        // const length = 30;
-        // const start = -60;
         const distance = () => 20;
 
         return [
@@ -97,8 +109,7 @@ export function hair(style) {
       case "sweep": {
         const angel = 30;
         const count = random(10, 20);
-        // const length = 65;
-        // const start = -15;
+
         const spread = random(10, 30);
         const length = 90 - spread;
         const start = 0 - spread;
@@ -118,9 +129,6 @@ export function hair(style) {
         const length = 100 - spread;
         const start = 0 - spread;
 
-        // const count = 25;
-        // const length = 60;
-        // const start = -30;
         const distance = (step) => (20 / count) * (count - step) + 5;
 
         return [
@@ -143,10 +151,6 @@ export function hair(style) {
         ];
       }
 
-      // case y: {
-      //
-      //   break;
-      // }
       default:
     }
   }
@@ -160,6 +164,8 @@ export function hair(style) {
     children: obj,
   }));
 }
+
+// bigger simple strokes
 export function lineArm(style) {
   function generate() {
     switch (style) {
@@ -233,10 +239,6 @@ export function lineArm(style) {
         return [...fan(60), ...fan(180 - 60)];
       }
 
-      // case y: {
-      //
-      //   break;
-      // }
       default:
     }
   }
@@ -249,6 +251,8 @@ export function lineArm(style) {
     children: obj,
   }));
 }
+
+// the closed shapes
 export function solidArm(style) {
   const styles = {
     siemensStar: () => {
@@ -367,8 +371,4 @@ export function solidArm(style) {
       },
     ],
   }));
-}
-// will return one item randomly from the array
-function sample(array) {
-  return array[Math.floor(rand() * array.length)];
 }
