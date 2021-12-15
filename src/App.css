@@ -14,6 +14,9 @@
 .snowflake__containter {
   width: 500px;
   height: 500px;
+  max-width: 80vmin;
+  max-height: 80vmin;
+
   margin: 0 auto;
   margin-top: 0.5rem;
 }

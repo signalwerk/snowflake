@@ -7,3 +7,8 @@ body {
   color: var(--color-print);
   text-align: center;
 }
+
+.small {
+  font-size: 0.7rem;
+  opacity: 0.4;
+}
