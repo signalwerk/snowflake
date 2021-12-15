@@ -67,9 +67,19 @@ function App() {
           </div>
         </div>
 
-        <p>Happy new year Christelle!</p>
+        <p>Generative Snowflake</p>
         <p className="small">❦</p>
-        <p className="small">billions of randomly generated snowflakes </p>
+        <p className="small">
+          billions of randomly generated snowflakes
+          <br />
+          <a
+            href="https://github.com/signalwerk/snowflake"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            → code
+          </a>
+        </p>
       </div>
     </div>
   );
