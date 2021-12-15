@@ -6,3 +6,6 @@ Inspired by Illustrations in a [public domain book about Snowflakes from (1863)]
 
 This was first [published](https://cizc9.csb.app/) for a secret santa project in 2021.
 
+For more secret santa projects by Stefan Huber see;
+
+* 2020 → [Demo](https://signalwerk.github.io/visual.particle.typo/) & [Code](https://github.com/signalwerk/visual.particle.typo) 
