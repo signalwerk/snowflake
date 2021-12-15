@@ -1,3 +1,8 @@
+:root {
+  --color-paper: rgb(13, 24, 40);
+  --color-print: rgb(244, 220, 180);
+}
+
 .snowflake__group {
   margin-top: 2rem;
 }
@@ -6,22 +11,100 @@
   display: flex;
 }
 
-.snowflake {
+.snowflake__containter {
   width: 500px;
   height: 500px;
   margin: 0 auto;
-  background-color: white;
   margin-top: 0.5rem;
 }
 
-svg line {
-  stroke: #000;
-  stroke-width: 0.3;
+.snowflake {
+  /* background-color: var(--color-paper); */
 }
 
-svg polygon {
-  fill: #000;
+.blink {
+  /* animation: snow-show infinite 5s linear; */
+  animation-iteration-count: infinite;
+  animation-name: snow-show;
+  animation-duration: 4s; /* keep in sync with js */
+
+  animation-direction: alternate;
 }
+
+.solidArm {
+  /* fill: var(--color-print);
+  stroke: var(--color-paper); */
+
+  fill: transparent;
+  stroke: var(--color-print);
+
+  stroke-width: 5;
+}
+
+.lineArm {
+  stroke: var(--color-print);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.lineArm--doubleLine {
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.lineArm--fanLine {
+  stroke-width: 0.5;
+}
+
+.hair {
+  stroke: var(--color-print);
+  stroke-width: 1.2;
+}
+
+svg {
+  animation: snow-spin infinite 90s linear;
+}
+
+@keyframes snow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes snow-show {
+  from {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* svg line {
+  stroke: #000;
+  stroke-width: 0.3;
+} */
+
+/* svg polygon {
+  fill: #000;
+} */
 /* .App {
   text-align: center;
 }
