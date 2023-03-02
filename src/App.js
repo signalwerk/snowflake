@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { snowflake } from "./snowflake";
 import { showConstruction } from "./showConstruction";
 
-const constructionIsRendered = false;
+export const useKeyDown = (callback, keys) => {
+  const onKeyDown = (event) => {
+    const wasAnyKeyPressed = keys.some((key) => event.key === key);
+    console.log("key", wasAnyKeyPressed, keys, event.key);
+    if (wasAnyKeyPressed) {
+      event.preventDefault();
+      callback();
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onKeyDown]);
+};
 
 // this renders out of the object the svg elements
 export function renderer(items) {
@@ -37,6 +52,17 @@ export function renderer(items) {
 
 function App() {
   const [counter, setCounter] = useState(0);
+  const [constructionIsRendered, setConstructionIsRendered] = useState(false);
+
+  // create new snowflake on keypress
+  useKeyDown(() => {
+    setCounter((v) => v + 1);
+  }, ["n"]);
+
+  // toggle construction-view (debug) on keypress
+  useKeyDown(() => {
+    setConstructionIsRendered((v) => !v);
+  }, ["d"]);
 
   console.log(`congrats you watched ${counter} snowflakes`);
 
